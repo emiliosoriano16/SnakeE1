@@ -1,10 +1,12 @@
-from turtle import *
-from random import randrange, choice
 import random
+from distutils.core import setup
+from random import randrange
+from turtle import *
+
 from freegames import square, vector
 
-color1 = random.randint(0,4)
-color2 = random.randint(0,4)
+color1 = random.randint(0, 4)
+color2 = random.randint(0, 4)
 
 while color2 == color1:
     color2 = random.randint(0, 4)
@@ -16,17 +18,20 @@ food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
 
+
 def change(x, y):
-    "Change snake direction."
+    """Change snake direction."""
     aim.x = x
     aim.y = y
 
+
 def inside(head):
-    "Return True if head inside boundaries."
+    """Return True if head inside boundaries."""
     return -200 < head.x < 190 and -200 < head.y < 190
 
+
 def move():
-    "Move snake forward one segment."
+    """Move snake forward one segment."""
     head = snake[-1].copy()
     head.move(aim)
 
@@ -53,12 +58,14 @@ def move():
     update()
     ontimer(move, 100)
 
-def movefood():
-    food.x += randrange(-10,11,10)
-    food.y += randrange(-10,11,10)
-    ontimer(movefood, 500)  
 
-setup(420, 420, 370, 0)
+def movefood():
+    food.x += randrange(-10, 11, 10)
+    food.y += randrange(-10, 11, 10)
+    ontimer(movefood, 500)
+
+
+setup()
 hideturtle()
 tracer(False)
 listen()
@@ -68,4 +75,4 @@ onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
 move()
 movefood()
-done()
+donbe()
